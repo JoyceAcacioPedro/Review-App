@@ -1,0 +1,152 @@
+
+<GerenciadorTelas>:
+    FirstScreen:
+        name: "firstscreen"
+    TopicsToReview:
+        name:"topicstoreview"
+    AddNewTopic:
+        name: "addnewtopic"
+    ViewScheduleRevisions:
+        name: "viewschedulerevisions"
+    RevisionHistory:
+        name:"revisionhistory"
+   
+        
+<BotaoMenu@ButtonBehavior+Label>:
+    canvas.before:
+        Color:
+            rgba: 120/255, 144/255, 156/255, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [20]
+    bold: True
+    font_size: 20
+    halign: "center"
+    valign: "middle"
+    text_size: self.size
+    size_hint_y: None
+    height: 80
+
+<FirstScreen>:
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+    
+        orientation: "vertical"
+        padding: 50
+        spacing: 20
+
+        BotaoMenu:
+            text:"Topics to Review"
+            on_release: app.root.current = "topicstoreview"
+        BotaoMenu:
+            text: "Add New Topic"
+            on_release: app.root.current = "addnewtopic"
+        
+        BotaoMenu:
+            text: "View Schedule Revisions"
+            on_release: app.root.current = "viewschedulerevisions"
+
+        BotaoMenu:
+            text: "Revision History"
+            on_press:
+                app.root.current ='revisionhistory'
+                app.get_history()
+
+<TopicsToReview>:
+    BoxLayout:
+        canvas:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+    
+        orientation: "vertical"
+        padding: 50
+        spacing: 20
+
+<AddNewTopic>:
+
+    BoxLayout:
+        canvas:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+    
+        orientation: "vertical"
+        padding: 50
+        spacing: 10
+
+        Label:
+            text: "Add a new topic:"
+            color: 0, 0, 0, 1
+            font_size: 25
+
+        TextInput:
+            hint_text:" Add the topic here"
+            size_hint: (0.8, None)
+            height: '50dp'
+            pos_hint: {"center_x": 0.5}
+            multiline: True
+        BotaoMenu:
+            text: "Save"
+            
+        
+
+
+<ViewScheduleRevisions>:
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        
+        orientation: "vertical"
+        padding: 50
+        spacing: 20
+        Label: 
+            id: label_schedules
+            text: 'Loading scheduled revisions...'
+
+        Label:
+            text: "All revisions:"
+            color: 0, 0, 0, 1
+            font_size: 25
+
+        BotaoMenu:
+            text: "Marcar como revisado"         
+
+
+<RevisionHistory>:
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        
+        orientation: "vertical"
+        padding: 50
+        spacing: 20
+        Label:
+            id: label_history
+            text: 'Loading history...'
+
+        Label:
+            text: "Revision History:"
+            color: 0, 0, 0, 1
+            font_size: 25
+
